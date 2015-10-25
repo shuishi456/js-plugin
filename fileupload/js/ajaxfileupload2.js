@@ -1,11 +1,12 @@
-$.extend({
-	//ÉÏ´«
+ï»¿$.extend({
+	//ä¸Šä¼ 
 	ajaxfileupload:function(s){
 		s = $.extend({},jquery.ajaxSettings,s);
 		
 		var id = new Date().getTime();
-		//´´½¨ÉÏ´«form
+		//åˆ›å»ºä¸Šä¼ form
 		var form = jquery.createUploadForm(id,s.fileElementId,(typeof(s.data) == 'undefined')?false:s.data);
+		var frame = jquery.createUploadIframe(id);
 		
 	},
 	createUploadForm:function(id,fileElementId,data){
@@ -29,7 +30,19 @@ $.extend({
 		jquery(form).css("left","-1200px");
 		jquery(form).appendTo("body");
 		return form;
+	},
+	function:createUploadIframe(id,uri){
+		var frameId = jUploadFrame+"id";
+		// åˆ›å»ºä¸Šä¼ iframe
+		var iframe = jquery("<iframe id='"+frameId+"' name='"+frameId+"'></iframe>");
+		if(window.activeXObject){
+			if((typeof uri) == 'boolean'){
+				iframe.attr("src","javascript:false");
+			}else if ((typeof uri)=='string'){
+				iframe.attr("src",uri);
+			}
+		}
 		
-		
+		jquery('body').appendChild(iframe);
 	}
 }):
