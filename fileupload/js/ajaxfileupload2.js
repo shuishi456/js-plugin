@@ -1,3 +1,4 @@
+//²âÊÔ
 $.extend({
 	//ÉÏ´«
 	ajaxfileupload:function(s){
